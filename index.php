@@ -558,15 +558,124 @@ Moral stories and creativity
     </div>
   </div>
 </section>
-<section>
-    <form method="post" action="admin/submit-form.php">
-        <input type="text" name="name" placeholder="Your Name" required>
-        <input type="email" name="email" placeholder="Your Email" required>
-        <input type="text" name="phone" placeholder="Phone Number" required>
-        <textarea name="message" placeholder="Message"></textarea>
-        <button type="submit">Submit</button>
-    </form>
+   <!-- user form -->
+<!-- ===================== Admission Enquiry Form ===================== -->
+<section class="bg-gray-900 text-white px-6 md:px-20 lg:px-40 py-16">
+  <div class="container mx-auto">
+
+    <!-- Heading -->
+    <div class="text-center mb-10">
+      <p class="text-green-400 uppercase tracking-widest text-sm">
+        Admission Enquiry
+      </p>
+      <h2 class="text-2xl md:text-3xl font-bold mt-2">
+        We’d Love to Hear From You
+      </h2>
+      <p class="text-gray-400 mt-3 max-w-2xl mx-auto">
+        Fill in the details below and our team will contact you shortly regarding admissions.
+      </p>
+    </div>
+
+    <!-- Form Wrapper -->
+    <div class="max-w-4xl mx-auto bg-gray-800 rounded-2xl shadow-lg p-8 md:p-10
+         transition-all duration-300 ease-out
+         hover:-translate-y-2 hover:shadow-2xl
+         focus-within:-translate-y-2 focus-within:shadow-2xl
+         focus-within:ring-2 focus-within:ring-yellow-500/40">
+      <form method="post" action="admin/submit-form.php" class="space-y-6">
+
+        <!-- Grid -->
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+
+          <!-- Name -->
+          <div>
+            <label class="block text-sm font-semibold mb-2 text-green-400">
+              Full Name
+            </label>
+            <div class="relative group">
+              <i class="fas fa-user absolute left-3 top-1/2 -translate-y-1/2 text-green-400 group-focus-within:text-yellow-500 transition"></i>
+              <input
+                type="text"
+                name="name"
+                required
+                placeholder="Enter your name"
+                class="w-full pl-10 pr-4 py-3 rounded-lg bg-gray-900 border border-gray-700 text-white
+                       focus:outline-none focus:ring-2 focus:ring-yellow-500"
+              />
+            </div>
+          </div>
+
+          <!-- Phone -->
+          <div>
+            <label class="block text-sm font-semibold mb-2 text-green-400">
+              Phone Number
+            </label>
+            <div class="relative group">
+              <i class="fas fa-phone absolute left-3 top-1/2 -translate-y-1/2 text-green-400 group-focus-within:text-yellow-500 transition"></i>
+              <input
+                type="text"
+                name="phone"
+                required
+                placeholder="Enter phone number"
+                class="w-full pl-10 pr-4 py-3 rounded-lg bg-gray-900 border border-gray-700 text-white
+                       focus:outline-none focus:ring-2 focus:ring-yellow-500"
+              />
+            </div>
+          </div>
+
+        </div>
+
+        <!-- Email -->
+        <div>
+          <label class="block text-sm font-semibold mb-2 text-green-400">
+            Email Address
+          </label>
+          <div class="relative group">
+            <i class="fas fa-envelope absolute left-3 top-1/2 -translate-y-1/2 text-green-400 group-focus-within:text-yellow-500 transition"></i>
+            <input
+              type="email"
+              name="email"
+              required
+              placeholder="Enter your email"
+              class="w-full pl-10 pr-4 py-3 rounded-lg bg-gray-900 border border-gray-700 text-white
+                     focus:outline-none focus:ring-2 focus:ring-yellow-500"
+            />
+          </div>
+        </div>
+
+        <!-- Message -->
+        <div>
+          <label class="block text-sm font-semibold mb-2 text-green-400">
+            Message
+          </label>
+          <textarea
+            name="message"
+            rows="4"
+            placeholder="Write your message here..."
+            class="w-full px-4 py-3 rounded-lg bg-gray-900 border border-gray-700 text-white
+                   focus:outline-none focus:ring-2 focus:ring-yellow-500"
+          ></textarea>
+        </div>
+
+        <!-- Button -->
+        <div class="text-center pt-4">
+          <button
+            type="submit"
+            class="inline-flex items-center justify-center gap-2 bg-yellow-500 text-gray-900 font-semibold
+                   px-10 py-3 rounded-full hover:bg-yellow-600 transition duration-300 shadow-lg hover:scale-105"
+          >
+            <i class="fas fa-paper-plane"></i>
+            Submit Enquiry
+          </button>
+        </div>
+
+      </form>
+    </div>
+
+  </div>
 </section>
+<!-- ===================== End Form ===================== -->
+
 <script>
   $(document).ready(function () {
     const testimonialsAuto = $('.testimonial');
