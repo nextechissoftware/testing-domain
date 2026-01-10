@@ -101,7 +101,7 @@
             <div class="relative z-10 container mx-auto flex flex-col md:flex-row items-center">
                 <div class="w-full md:w-1/2 space-y-6">
                     <h1 class="text-4xl md:text-7xl mt-10 font-bold">
-                        Your Kids <br /> Deserve The <br /> <span class="text-blue-400">Best Education</span>
+                        Your Kids <br /> Deserve The <br /> <span class="text-blue-400">Best Education From RNS School</span>
                     </h1>
                     <p class="text-lg text-gray-300">Active Learning, Expert Teachers & Safe Environment</p>
                     <a href="https://docs.google.com/forms/d/e/1FAIpQLScKyroS4curaZ-CPWBVwRnpxbc-LHLPjHT060yNLX_Tu3asTQ/viewform?usp=preview" class="inline-block px-6 py-3 bg-amber-500 text-white font-semibold rounded-full hover:bg-amber-600 transition">
