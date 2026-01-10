@@ -12,7 +12,7 @@
     <div class="container mx-auto px-4 py-16">
         <div class="text-center mb-12">
             <p class="text-green-400 uppercase tracking-widest">Best Courses</p>
-            <h1 class="text-2xl md:text-4xl font-bold mt-2">Find The Right Course For You</h1>
+            <h1 class="text-2xl md:text-4xl font-bold mt-2 test">Find The Right Course For You</h1>
         </div>
 
         <div class="grid gap-8 md:grid-cols-2 lg:grid-cols-3">
