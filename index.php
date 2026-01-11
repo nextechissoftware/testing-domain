@@ -581,27 +581,25 @@ Moral stories and creativity
 
       <form id="admissionForm" method="POST" action="admin/submit-form.php" class="space-y-6">
 
-        <!-- Grid: Name & Phone -->
+        <!-- Name & Phone -->
         <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
-          <!-- Name -->
           <div>
             <label class="block text-sm font-semibold mb-2 text-green-400">Full Name</label>
             <div class="relative group">
-              <i class="fas fa-user absolute left-3 top-1/2 -translate-y-1/2 text-green-400 group-focus-within:text-yellow-500 transition"></i>
+              <i class="fas fa-user absolute left-3 top-1/2 -translate-y-1/2 text-green-400"></i>
               <input type="text" name="name" required placeholder="Enter your name"
-                     class="w-full pl-10 pr-4 py-3 rounded-lg bg-gray-900 border border-gray-700 text-white
-                            focus:outline-none focus:ring-2 focus:ring-yellow-500" />
+                class="w-full pl-10 pr-4 py-3 rounded-lg bg-gray-900 border border-gray-700 text-white
+                focus:outline-none focus:ring-2 focus:ring-yellow-500">
             </div>
           </div>
 
-          <!-- Phone -->
           <div>
             <label class="block text-sm font-semibold mb-2 text-green-400">Phone Number</label>
             <div class="relative group">
-              <i class="fas fa-phone absolute left-3 top-1/2 -translate-y-1/2 text-blue-400 group-focus-within:text-yellow-500 transition"></i>
+              <i class="fas fa-phone absolute left-3 top-1/2 -translate-y-1/2 text-blue-400"></i>
               <input type="text" name="phone" required placeholder="Enter phone number"
-                     class="w-full pl-10 pr-4 py-3 rounded-lg bg-gray-900 border border-gray-700 text-white
-                            focus:outline-none focus:ring-2 focus:ring-yellow-500" />
+                class="w-full pl-10 pr-4 py-3 rounded-lg bg-gray-900 border border-gray-700 text-white
+                focus:outline-none focus:ring-2 focus:ring-yellow-500">
             </div>
           </div>
         </div>
@@ -610,10 +608,10 @@ Moral stories and creativity
         <div>
           <label class="block text-sm font-semibold mb-2 text-green-400">Email Address</label>
           <div class="relative group">
-            <i class="fas fa-envelope absolute left-3 top-1/2 -translate-y-1/2 text-red-400 group-focus-within:text-yellow-500 transition"></i>
+            <i class="fas fa-envelope absolute left-3 top-1/2 -translate-y-1/2 text-red-400"></i>
             <input type="email" name="email" required placeholder="Enter your email"
-                   class="w-full pl-10 pr-4 py-3 rounded-lg bg-gray-900 border border-gray-700 text-white
-                          focus:outline-none focus:ring-2 focus:ring-yellow-500" />
+              class="w-full pl-10 pr-4 py-3 rounded-lg bg-gray-900 border border-gray-700 text-white
+              focus:outline-none focus:ring-2 focus:ring-yellow-500">
           </div>
         </div>
 
@@ -621,47 +619,67 @@ Moral stories and creativity
         <div>
           <label class="block text-sm font-semibold mb-2 text-green-400">Message</label>
           <textarea name="message" rows="4" placeholder="Write your message here..."
-                    class="w-full px-4 py-3 rounded-lg bg-gray-900 border border-gray-700 text-white
-                           focus:outline-none focus:ring-2 focus:ring-yellow-500"></textarea>
+            class="w-full px-4 py-3 rounded-lg bg-gray-900 border border-gray-700 text-white
+            focus:outline-none focus:ring-2 focus:ring-yellow-500"></textarea>
         </div>
 
-        <!-- Submit Button -->
+        <!-- Submit -->
         <div class="text-center pt-4">
           <button type="submit"
-                  class="inline-flex items-center justify-center gap-2 bg-yellow-500 text-gray-900 font-semibold
-                         px-10 py-3 rounded-full hover:bg-yellow-600 transition duration-300 shadow-lg hover:scale-105">
+            class="inline-flex items-center justify-center gap-2 bg-yellow-500 text-gray-900
+            font-semibold px-10 py-3 rounded-full hover:bg-yellow-600
+            transition duration-300 shadow-lg hover:scale-105">
             <i class="fas fa-paper-plane"></i>
             Submit Enquiry
           </button>
         </div>
+
       </form>
     </div>
   </div>
+</section>
 
-<!-- ================= Popup Modal ================= -->
-<div id="thankYouModal" class="fixed inset-0 bg-black bg-opacity-50 backdrop-blur-sm flex items-center justify-center hidden z-50">
-  <div class="bg-gray-800 text-white rounded-2xl p-8 max-w-md w-full text-center relative transform scale-0 transition-transform duration-500 ease-out shadow-2xl">
+<!-- ================= Loader ================= -->
+<div id="formLoader"
+  class="fixed inset-0 bg-black/70 backdrop-blur-sm hidden
+  flex items-center justify-center z-[999]">
 
-    <!-- Top-right cancel icon -->
-    <button id="cancelIcon" 
-            class="absolute top-4 right-4 text-red-500 hover:text-yellow-500 text-3xl font-bold transition transform hover:scale-110"
-            title="Cancel">
+  <div class="text-center">
+    <div class="w-16 h-16 border-4 border-yellow-500 border-t-transparent
+      rounded-full animate-spin mx-auto mb-4"></div>
+    <p class="text-white text-lg font-semibold animate-pulse">
+      Submitting your enquiry...
+    </p>
+  </div>
+</div>
+
+<!-- ================= Thank You Modal ================= -->
+<div id="thankYouModal"
+  class="fixed inset-0 bg-black/50 backdrop-blur-sm hidden
+  flex items-center justify-center z-[1000]">
+
+  <div class="bg-gray-800 text-white rounded-2xl p-8 max-w-md w-full text-center
+    relative transform scale-0 transition-transform duration-500 shadow-2xl">
+
+    <button id="cancelIcon"
+      class="absolute top-4 right-4 text-red-500 hover:text-yellow-500
+      text-3xl font-bold transition">
       &times;
     </button>
 
-    <!-- Check icon -->
     <div class="text-green-400 text-6xl mb-4 animate-bounce">
       <i class="fas fa-check-circle"></i>
     </div>
 
-    <!-- Title & Message -->
     <h3 class="text-3xl font-bold mb-2">Thank You!</h3>
     <p class="text-gray-300 mb-6">
-      Your enquiry has been submitted successfully. Our team will contact you shortly.
+      Your enquiry has been submitted successfully.
+      Our team will contact you shortly.
     </p>
 
-    <!-- Bottom-middle Close Button -->
-    <button id="closeBtn" class="bg-yellow-500 hover:bg-yellow-600 px-8 py-3 rounded-full font-semibold shadow-lg transition transform hover:scale-105 mx-auto block">
+    <button id="closeBtn"
+      class="bg-yellow-500 hover:bg-yellow-600 px-8 py-3
+      rounded-full font-semibold shadow-lg transition hover:scale-105">
       Close
     </button>
   </div>
@@ -669,48 +687,48 @@ Moral stories and creativity
 
 <!-- ================= JS ================= -->
 <script>
-  $(document).ready(function() {
-    const form = $('#admissionForm'); // Make sure your form has this ID
-    const modal = $('#thankYouModal');
-    const modalCard = modal.find('div');
-    const closeBtn = $('#closeBtn, #cancelIcon');
+$(document).ready(function () {
+  const form = $('#admissionForm');
+  const loader = $('#formLoader');
+  const modal = $('#thankYouModal');
+  const modalCard = modal.find('div');
+  const closeBtn = $('#closeBtn, #cancelIcon');
 
-    form.submit(function(e) {
-      e.preventDefault(); // prevent default submit
+  form.submit(function (e) {
+    e.preventDefault();
+    loader.removeClass('hidden');
 
-      $.ajax({
-        url: form.attr('action'),
-        type: 'POST',
-        data: form.serialize(),
-        success: function(response) {
-          // reset form
-          form[0].reset();
-          // show modal with zoom effect
-          modal.removeClass('hidden');
-          setTimeout(() => {
-            modalCard.css('transform', 'scale(1)');
-          }, 50);
-        },
-        error: function() {
-          alert('Error submitting form. Please try again.');
-        }
-      });
-    });
+    $.ajax({
+      url: form.attr('action'),
+      type: 'POST',
+      data: form.serialize(),
 
-    // Close popup
-    closeBtn.click(function() {
-      modalCard.css('transform', 'scale(0)');
-      setTimeout(() => modal.addClass('hidden'), 300);
-    });
+      success: function () {
+        form[0].reset();
+        loader.addClass('hidden');
+        modal.removeClass('hidden');
+        setTimeout(() => modalCard.css('transform','scale(1)'), 50);
+      },
 
-    // Close when clicking outside
-    modal.click(function(e) {
-      if(e.target === this){
-        modalCard.css('transform', 'scale(0)');
-        setTimeout(() => modal.addClass('hidden'), 300);
+      error: function () {
+        loader.addClass('hidden');
+        alert('Error submitting form. Please try again.');
       }
     });
   });
+
+  closeBtn.click(function () {
+    modalCard.css('transform','scale(0)');
+    setTimeout(() => modal.addClass('hidden'), 300);
+  });
+
+  modal.click(function (e) {
+    if (e.target === this) {
+      modalCard.css('transform','scale(0)');
+      setTimeout(() => modal.addClass('hidden'), 300);
+    }
+  });
+});
 </script>
 
 
