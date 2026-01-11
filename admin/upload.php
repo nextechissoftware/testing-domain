@@ -93,8 +93,8 @@ if (isset($_GET['delete'])) {
     </div>
 
     <div class="space-x-4 text-sm">
-      <a href="change-password.php" class="text-gray-300 hover:text-yellow-400">Change Password</a>
-      <a href="logout.php" class="text-red-400 hover:text-red-500">Logout</a>
+      <a href="change-password" class="text-gray-300 hover:text-yellow-400">Change Password</a>
+      <a href="logout" class="text-red-400 hover:text-red-500">Logout</a>
     </div>
 
   </div>
