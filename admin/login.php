@@ -11,7 +11,7 @@ if (isset($_POST['login'])) {
 
   if ($admin && password_verify($pass, $admin['password'])) {
     $_SESSION['admin_id'] = $admin['id'];
-    header("Location: upload.php");
+    header("Location: dashboard");
     exit;
   } else {
     $error = "Invalid username or password";
