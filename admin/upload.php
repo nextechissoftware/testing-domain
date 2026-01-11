@@ -46,77 +46,90 @@ if (isset($_GET['delete'])) {
 <html lang="en">
 <head>
 <meta charset="UTF-8">
-<title>Admin Dashboard</title>
+<title>Admin Panel | Shaheed RNS Education Academy</title>
 <script src="https://cdn.tailwindcss.com"></script>
 </head>
 
-<body class="bg-gray-900 text-white min-h-screen">
+<body class="bg-gradient-to-br from-gray-900 via-gray-800 to-black text-white min-h-screen">
 
-<!-- Header -->
-<header class="bg-gray-800 px-6 py-4 flex justify-between items-center shadow">
-  <h1 class="text-xl font-bold text-yellow-400">Admin Dashboard</h1>
-  <div class="space-x-4">
-    <a href="change-password.php" class="text-sm text-gray-300 hover:text-white">Change Password</a>
-    <a href="logout.php" class="text-sm text-red-400 hover:text-red-500">Logout</a>
+<!-- TOP HEADER -->
+<header class="bg-black/60 backdrop-blur border-b border-gray-700">
+  <div class="max-w-7xl mx-auto px-6 py-4 flex items-center justify-between">
+
+    <!-- School Branding -->
+    <div class="flex items-center gap-4">
+      <img src="../assets/logo.jpeg" class="w-12 h-12 rounded-full border-2 border-yellow-400">
+      <div>
+        <h1 class="text-lg font-bold text-yellow-400">Shaheed RNS Education Academy</h1>
+        <p class="text-xs text-gray-400">Admin Control Panel</p>
+      </div>
+    </div>
+
+    <!-- Actions -->
+    <div class="space-x-4 text-sm">
+      <a href="change-password.php" class="text-gray-300 hover:text-yellow-400">Change Password</a>
+      <a href="logout.php" class="text-red-400 hover:text-red-500">Logout</a>
+    </div>
+
   </div>
 </header>
 
-<div class="p-6 max-w-7xl mx-auto space-y-10">
+<div class="max-w-7xl mx-auto px-6 py-10 space-y-10">
 
-  <!-- Messages -->
+  <!-- ALERTS -->
   <?php if (isset($error)) : ?>
-    <div class="bg-red-500/20 border border-red-500 text-red-400 px-4 py-3 rounded">
+    <div class="bg-red-500/20 border border-red-500 text-red-400 px-5 py-3 rounded-xl">
       <?= $error ?>
     </div>
   <?php endif; ?>
 
   <?php if (isset($success)) : ?>
-    <div class="bg-green-500/20 border border-green-500 text-green-400 px-4 py-3 rounded">
+    <div class="bg-green-500/20 border border-green-500 text-green-400 px-5 py-3 rounded-xl">
       <?= $success ?>
     </div>
   <?php endif; ?>
 
-  <!-- Upload Section -->
-  <section class="bg-gray-800 rounded-xl p-6 shadow">
-    <h2 class="text-lg font-semibold mb-4 text-yellow-400">Upload Gallery Image</h2>
+  <!-- UPLOAD CARD -->
+  <section class="bg-gray-800/80 backdrop-blur rounded-2xl p-6 shadow-xl border border-gray-700">
+    <h2 class="text-xl font-semibold text-yellow-400 mb-4">Upload School Gallery Image</h2>
 
-    <form method="post" enctype="multipart/form-data" class="flex flex-col sm:flex-row gap-4">
+    <form method="post" enctype="multipart/form-data" class="flex flex-col md:flex-row gap-4">
       <input
         type="file"
         name="image"
         accept="image/*"
         required
-        class="flex-1 bg-gray-900 border border-gray-700 rounded-lg px-4 py-2"
+        class="flex-1 bg-gray-900 border border-gray-600 rounded-lg px-4 py-3"
       >
       <button
         type="submit"
         name="upload"
-        class="bg-yellow-500 hover:bg-yellow-600 text-gray-900 font-semibold px-6 py-2 rounded-lg">
-        Upload
+        class="bg-yellow-500 hover:bg-yellow-600 text-black font-semibold px-8 py-3 rounded-lg shadow-lg transition">
+        Upload Image
       </button>
     </form>
   </section>
 
-  <!-- Gallery -->
+  <!-- GALLERY -->
   <section>
-    <h2 class="text-lg font-semibold mb-4 text-yellow-400">Gallery Images</h2>
+    <h2 class="text-xl font-semibold text-yellow-400 mb-5">Gallery Images</h2>
 
-    <div class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-6">
+    <div class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-6">
       <?php
       $result = mysqli_query($conn,"SELECT * FROM gallery_images ORDER BY id DESC");
       while($row = mysqli_fetch_assoc($result)){
       ?>
-        <div class="bg-gray-800 rounded-lg overflow-hidden shadow">
+        <div class="group bg-gray-800 rounded-xl overflow-hidden shadow-lg border border-gray-700">
           <img
             src="../assets/gallery/<?= $row['image'] ?>"
-            class="w-full h-40 object-cover"
+            class="w-full h-40 object-cover group-hover:scale-105 transition"
           >
-          <div class="p-3 text-center">
+          <div class="p-3 text-center bg-black/40">
             <a
               href="?delete=<?= $row['id'] ?>"
               onclick="return confirm('Are you sure?')"
-              class="text-red-400 hover:text-red-500 text-sm">
-              Delete
+              class="text-sm text-red-400 hover:text-red-500">
+              Delete Image
             </a>
           </div>
         </div>
@@ -124,12 +137,12 @@ if (isset($_GET['delete'])) {
     </div>
   </section>
 
-  <!-- Enquiries -->
-  <section class="bg-gray-800 rounded-xl p-6 shadow">
-    <h2 class="text-lg font-semibold mb-4 text-yellow-400">Form Submissions</h2>
+  <!-- ENQUIRIES -->
+  <section class="bg-gray-800/80 backdrop-blur rounded-2xl p-6 shadow-xl border border-gray-700">
+    <h2 class="text-xl font-semibold text-yellow-400 mb-4">Student Enquiries</h2>
 
     <div class="overflow-x-auto">
-      <table class="min-w-full border border-gray-700 text-sm">
+      <table class="min-w-full text-sm border border-gray-700 rounded-lg overflow-hidden">
         <thead class="bg-gray-700 text-gray-300">
           <tr>
             <th class="p-3 text-left">Name</th>
@@ -158,6 +171,11 @@ if (isset($_GET['delete'])) {
   </section>
 
 </div>
+
+<!-- FOOTER -->
+<footer class="text-center text-gray-500 text-xs py-6">
+  © <?= date('Y') ?> Shaheed RNS Education Academy. All rights reserved.
+</footer>
 
 </body>
 </html>
