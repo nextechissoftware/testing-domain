@@ -1,6 +1,32 @@
 <?php
 session_start();
 include "../config/db.php";
+/* 📥 Download Enquiries as Excel (CSV) */
+if (isset($_GET['download']) && $_GET['download'] == 'enquiries') {
+
+    header('Content-Type: text/csv; charset=utf-8');
+    header('Content-Disposition: attachment; filename=student_enquiries.csv');
+
+    $output = fopen('php://output', 'w');
+
+    // Excel header row
+    fputcsv($output, ['Name', 'Email', 'Phone', 'Message', 'Date']);
+
+    $enq = mysqli_query($conn, "SELECT * FROM enquiries ORDER BY id DESC");
+    while ($row = mysqli_fetch_assoc($enq)) {
+        fputcsv($output, [
+            $row['name'],
+            $row['email'],
+            $row['phone'],
+            $row['message'],
+            $row['created_at']
+        ]);
+    }
+
+    fclose($output);
+    exit;
+}
+
 
 /* 🔐 Login protection */
 if (!isset($_SESSION['admin_id'])) {
