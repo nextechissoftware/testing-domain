@@ -1,0 +1,12 @@
+RewriteEngine On
+
+# Remove .php extension
+RewriteCond %{REQUEST_FILENAME} !-d
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteRule ^([^\.]+)$ $1.php [NC,L]
+
+# Friendly admin URLs
+RewriteRule ^login$ login.php [NC,L]
+RewriteRule ^dashboard$ upload.php [NC,L]
+RewriteRule ^change-password$ change-password.php [NC,L]
+RewriteRule ^logout$ logout.php [NC,L]
