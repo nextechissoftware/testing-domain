@@ -565,12 +565,8 @@ Moral stories and creativity
 
     <!-- Heading -->
     <div class="text-center mb-10">
-      <p class="text-green-400 uppercase tracking-widest text-sm">
-        Admission Enquiry
-      </p>
-      <h2 class="text-2xl md:text-3xl font-bold mt-2">
-        We’d Love to Hear From You
-      </h2>
+      <p class="text-green-400 uppercase tracking-widest text-sm">Admission Enquiry</p>
+      <h2 class="text-2xl md:text-3xl font-bold mt-2">We’d Love to Hear From You</h2>
       <p class="text-gray-400 mt-3 max-w-2xl mx-auto">
         Fill in the details below and our team will contact you shortly regarding admissions.
       </p>
@@ -582,98 +578,142 @@ Moral stories and creativity
          hover:-translate-y-2 hover:shadow-2xl
          focus-within:-translate-y-2 focus-within:shadow-2xl
          focus-within:ring-2 focus-within:ring-yellow-500/40">
-      <form method="post" action="admin/submit-form.php" class="space-y-6">
 
-        <!-- Grid -->
+      <form id="admissionForm" method="POST" action="admin/submit-form.php" class="space-y-6">
+
+        <!-- Grid: Name & Phone -->
         <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
-
           <!-- Name -->
           <div>
-            <label class="block text-sm font-semibold mb-2 text-green-400">
-              Full Name
-            </label>
+            <label class="block text-sm font-semibold mb-2 text-green-400">Full Name</label>
             <div class="relative group">
               <i class="fas fa-user absolute left-3 top-1/2 -translate-y-1/2 text-green-400 group-focus-within:text-yellow-500 transition"></i>
-              <input
-                type="text"
-                name="name"
-                required
-                placeholder="Enter your name"
-                class="w-full pl-10 pr-4 py-3 rounded-lg bg-gray-900 border border-gray-700 text-white
-                       focus:outline-none focus:ring-2 focus:ring-yellow-500"
-              />
+              <input type="text" name="name" required placeholder="Enter your name"
+                     class="w-full pl-10 pr-4 py-3 rounded-lg bg-gray-900 border border-gray-700 text-white
+                            focus:outline-none focus:ring-2 focus:ring-yellow-500" />
             </div>
           </div>
 
           <!-- Phone -->
           <div>
-            <label class="block text-sm font-semibold mb-2 text-green-400">
-              Phone Number
-            </label>
+            <label class="block text-sm font-semibold mb-2 text-green-400">Phone Number</label>
             <div class="relative group">
-              <i class="fas fa-phone absolute left-3 top-1/2 -translate-y-1/2 text-green-400 group-focus-within:text-yellow-500 transition"></i>
-              <input
-                type="text"
-                name="phone"
-                required
-                placeholder="Enter phone number"
-                class="w-full pl-10 pr-4 py-3 rounded-lg bg-gray-900 border border-gray-700 text-white
-                       focus:outline-none focus:ring-2 focus:ring-yellow-500"
-              />
+              <i class="fas fa-phone absolute left-3 top-1/2 -translate-y-1/2 text-blue-400 group-focus-within:text-yellow-500 transition"></i>
+              <input type="text" name="phone" required placeholder="Enter phone number"
+                     class="w-full pl-10 pr-4 py-3 rounded-lg bg-gray-900 border border-gray-700 text-white
+                            focus:outline-none focus:ring-2 focus:ring-yellow-500" />
             </div>
           </div>
-
         </div>
 
         <!-- Email -->
         <div>
-          <label class="block text-sm font-semibold mb-2 text-green-400">
-            Email Address
-          </label>
+          <label class="block text-sm font-semibold mb-2 text-green-400">Email Address</label>
           <div class="relative group">
-            <i class="fas fa-envelope absolute left-3 top-1/2 -translate-y-1/2 text-green-400 group-focus-within:text-yellow-500 transition"></i>
-            <input
-              type="email"
-              name="email"
-              required
-              placeholder="Enter your email"
-              class="w-full pl-10 pr-4 py-3 rounded-lg bg-gray-900 border border-gray-700 text-white
-                     focus:outline-none focus:ring-2 focus:ring-yellow-500"
-            />
+            <i class="fas fa-envelope absolute left-3 top-1/2 -translate-y-1/2 text-red-400 group-focus-within:text-yellow-500 transition"></i>
+            <input type="email" name="email" required placeholder="Enter your email"
+                   class="w-full pl-10 pr-4 py-3 rounded-lg bg-gray-900 border border-gray-700 text-white
+                          focus:outline-none focus:ring-2 focus:ring-yellow-500" />
           </div>
         </div>
 
         <!-- Message -->
         <div>
-          <label class="block text-sm font-semibold mb-2 text-green-400">
-            Message
-          </label>
-          <textarea
-            name="message"
-            rows="4"
-            placeholder="Write your message here..."
-            class="w-full px-4 py-3 rounded-lg bg-gray-900 border border-gray-700 text-white
-                   focus:outline-none focus:ring-2 focus:ring-yellow-500"
-          ></textarea>
+          <label class="block text-sm font-semibold mb-2 text-green-400">Message</label>
+          <textarea name="message" rows="4" placeholder="Write your message here..."
+                    class="w-full px-4 py-3 rounded-lg bg-gray-900 border border-gray-700 text-white
+                           focus:outline-none focus:ring-2 focus:ring-yellow-500"></textarea>
         </div>
 
-        <!-- Button -->
+        <!-- Submit Button -->
         <div class="text-center pt-4">
-          <button
-            type="submit"
-            class="inline-flex items-center justify-center gap-2 bg-yellow-500 text-gray-900 font-semibold
-                   px-10 py-3 rounded-full hover:bg-yellow-600 transition duration-300 shadow-lg hover:scale-105"
-          >
+          <button type="submit"
+                  class="inline-flex items-center justify-center gap-2 bg-yellow-500 text-gray-900 font-semibold
+                         px-10 py-3 rounded-full hover:bg-yellow-600 transition duration-300 shadow-lg hover:scale-105">
             <i class="fas fa-paper-plane"></i>
             Submit Enquiry
           </button>
         </div>
-
       </form>
     </div>
-
   </div>
-</section>
+
+<!-- ================= Popup Modal ================= -->
+<div id="thankYouModal" class="fixed inset-0 bg-black bg-opacity-50 backdrop-blur-sm flex items-center justify-center hidden z-50">
+  <div class="bg-gray-800 text-white rounded-2xl p-8 max-w-md w-full text-center relative transform scale-0 transition-transform duration-500 ease-out shadow-2xl">
+
+    <!-- Top-right cancel icon -->
+    <button id="cancelIcon" 
+            class="absolute top-4 right-4 text-red-500 hover:text-yellow-500 text-3xl font-bold transition transform hover:scale-110"
+            title="Cancel">
+      &times;
+    </button>
+
+    <!-- Check icon -->
+    <div class="text-green-400 text-6xl mb-4 animate-bounce">
+      <i class="fas fa-check-circle"></i>
+    </div>
+
+    <!-- Title & Message -->
+    <h3 class="text-3xl font-bold mb-2">Thank You!</h3>
+    <p class="text-gray-300 mb-6">
+      Your enquiry has been submitted successfully. Our team will contact you shortly.
+    </p>
+
+    <!-- Bottom-middle Close Button -->
+    <button id="closeBtn" class="bg-yellow-500 hover:bg-yellow-600 px-8 py-3 rounded-full font-semibold shadow-lg transition transform hover:scale-105 mx-auto block">
+      Close
+    </button>
+  </div>
+</div>
+
+<!-- ================= JS ================= -->
+<script>
+  $(document).ready(function() {
+    const form = $('#admissionForm'); // Make sure your form has this ID
+    const modal = $('#thankYouModal');
+    const modalCard = modal.find('div');
+    const closeBtn = $('#closeBtn, #cancelIcon');
+
+    form.submit(function(e) {
+      e.preventDefault(); // prevent default submit
+
+      $.ajax({
+        url: form.attr('action'),
+        type: 'POST',
+        data: form.serialize(),
+        success: function(response) {
+          // reset form
+          form[0].reset();
+          // show modal with zoom effect
+          modal.removeClass('hidden');
+          setTimeout(() => {
+            modalCard.css('transform', 'scale(1)');
+          }, 50);
+        },
+        error: function() {
+          alert('Error submitting form. Please try again.');
+        }
+      });
+    });
+
+    // Close popup
+    closeBtn.click(function() {
+      modalCard.css('transform', 'scale(0)');
+      setTimeout(() => modal.addClass('hidden'), 300);
+    });
+
+    // Close when clicking outside
+    modal.click(function(e) {
+      if(e.target === this){
+        modalCard.css('transform', 'scale(0)');
+        setTimeout(() => modal.addClass('hidden'), 300);
+      }
+    });
+  });
+</script>
+
+
 <!-- ===================== End Form ===================== -->
 
 <script>
