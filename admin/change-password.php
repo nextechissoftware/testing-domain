@@ -3,7 +3,7 @@ session_start();
 include "../config/db.php";
 
 if (!isset($_SESSION['admin_id'])) {
-  header("Location: login.php");
+  header("Location: login");
   exit;
 }
 
@@ -113,7 +113,7 @@ if (isset($_POST['change'])) {
 
   <!-- Back -->
   <div class="text-center mt-6">
-    <a href="upload.php" class="text-sm text-gray-400 hover:text-yellow-400">
+    <a href="dashboard" class="text-sm text-gray-400 hover:text-yellow-400">
       ← Back to Dashboard
     </a>
   </div>
