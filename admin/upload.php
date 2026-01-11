@@ -74,40 +74,37 @@ if (isset($_GET['delete'])) {
 <html lang="en">
 <head>
 <meta charset="UTF-8">
-<title>Admin Panel | Shaheed RNS Education Academy</title>
+<title>Admin Dashboard | Shaheed RNS Education Academy</title>
 <script src="https://cdn.tailwindcss.com"></script>
 </head>
 
 <body class="bg-gradient-to-br from-gray-900 via-gray-800 to-black text-white min-h-screen flex">
 
 <!-- ================= SIDEBAR ================= -->
-<aside class="w-64 bg-black/80 backdrop-blur border-r border-gray-700 flex flex-col">
+<aside class="w-64 fixed inset-y-0 left-0 bg-black border-r border-gray-700">
 
-  <!-- Profile -->
   <div class="p-6 text-center border-b border-gray-700">
     <img src="../assets/logo.jpeg"
          id="profileBtn"
          class="w-20 h-20 mx-auto rounded-full border-2 border-yellow-400 cursor-pointer">
-    <h2 class="text-yellow-400 font-semibold mt-3">
+    <h2 class="text-yellow-400 text-sm font-semibold mt-3">
       Shaheed RNS Education Academy
     </h2>
-    <p class="text-gray-400 text-xs">Administrator</p>
+    <p class="text-xs text-gray-400">Admin Panel</p>
 
-    <!-- Dropdown -->
-    <div id="profileMenu" class="hidden mt-4 bg-gray-800 rounded-xl border border-gray-700">
-      <a href="change-password"
-         class="block px-4 py-2 text-sm hover:bg-gray-700 rounded-t-xl">
-         Change Password
+    <!-- Profile Dropdown -->
+    <div id="profileMenu" class="hidden mt-4 bg-gray-800 rounded-lg border border-gray-700 text-sm">
+      <a href="change-password" class="block px-4 py-2 hover:bg-gray-700">
+        Change Password
       </a>
-      <a href="logout"
-         class="block px-4 py-2 text-sm text-red-400 hover:bg-gray-700 rounded-b-xl">
-         Logout
+      <a href="logout" class="block px-4 py-2 text-red-400 hover:bg-gray-700">
+        Logout
       </a>
     </div>
   </div>
 
-  <!-- Menu -->
-  <nav class="flex-1 p-6 space-y-2 text-sm">
+  <!-- Sidebar Menu -->
+  <nav class="p-4 space-y-2 text-sm">
     <a href="#dashboard"
        class="block px-4 py-3 rounded-lg bg-yellow-500 text-black font-semibold">
        Dashboard
@@ -122,17 +119,19 @@ if (isset($_GET['delete'])) {
     </a>
   </nav>
 
-  <p class="text-center text-xs text-gray-500 p-4 border-t border-gray-700">
+  <p class="absolute bottom-4 w-full text-center text-xs text-gray-500">
     © <?= date('Y') ?>
   </p>
 </aside>
 
 <!-- ================= MAIN CONTENT ================= -->
-<main class="flex-1 overflow-y-auto px-8 py-10 space-y-12">
+<main class="ml-64 flex-1 px-8 py-10 space-y-12">
 
 <!-- Dashboard -->
 <section id="dashboard">
-  <h1 class="text-2xl font-bold text-yellow-400 mb-6">Admin Dashboard</h1>
+  <h1 class="text-2xl font-bold text-yellow-400 mb-6">
+    Admin Dashboard
+  </h1>
 
   <?php if (isset($error)) : ?>
     <div class="bg-red-500/20 border border-red-500 text-red-400 px-5 py-3 rounded-xl mb-6">
@@ -147,12 +146,14 @@ if (isset($_GET['delete'])) {
   <?php endif; ?>
 </section>
 
-<!-- Upload -->
-<section class="bg-gray-800/80 backdrop-blur rounded-2xl p-6 shadow border border-gray-700">
-  <h2 class="text-xl font-semibold text-yellow-400 mb-4">Upload School Gallery Image</h2>
+<!-- Upload Section -->
+<section class="bg-gray-800/80 backdrop-blur rounded-2xl p-6 border border-gray-700 shadow">
+  <h2 class="text-xl font-semibold text-yellow-400 mb-4">
+    Upload School Gallery Image
+  </h2>
 
   <form method="post" enctype="multipart/form-data" class="flex gap-4 flex-wrap">
-    <input type="file" name="image" accept="image/*" required
+    <input type="file" name="image" required
            class="flex-1 bg-gray-900 border border-gray-600 rounded-lg px-4 py-3">
     <button type="submit" name="upload"
             class="bg-yellow-500 hover:bg-yellow-600 text-black font-semibold px-8 py-3 rounded-lg">
@@ -163,16 +164,18 @@ if (isset($_GET['delete'])) {
 
 <!-- Gallery -->
 <section id="gallery">
-  <h2 class="text-xl font-semibold text-yellow-400 mb-5">Gallery Images</h2>
+  <h2 class="text-xl font-semibold text-yellow-400 mb-5">
+    Gallery Images
+  </h2>
 
   <div class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-6">
     <?php
-    $result = mysqli_query($conn,"SELECT * FROM gallery_images ORDER BY id DESC");
-    while($row = mysqli_fetch_assoc($result)){
+    $res = mysqli_query($conn,"SELECT * FROM gallery_images ORDER BY id DESC");
+    while($row = mysqli_fetch_assoc($res)){
     ?>
-      <div class="bg-gray-800 rounded-xl overflow-hidden border border-gray-700">
+      <div class="bg-gray-800 rounded-xl border border-gray-700 overflow-hidden">
         <img src="../assets/gallery/<?= $row['image'] ?>"
-             class="w-full h-40 object-cover hover:scale-105 transition">
+             class="w-full h-40 object-cover">
         <div class="p-3 text-center bg-black/40">
           <a href="?delete=<?= $row['id'] ?>"
              onclick="return confirm('Are you sure?')"
@@ -186,17 +189,19 @@ if (isset($_GET['delete'])) {
 </section>
 
 <!-- Enquiries -->
-<section id="enquiries" class="bg-gray-800/80 backdrop-blur rounded-2xl p-6 shadow border border-gray-700">
+<section id="enquiries" class="bg-gray-800/80 backdrop-blur rounded-2xl p-6 border border-gray-700 shadow">
   <div class="flex justify-between items-center mb-4">
-    <h2 class="text-xl font-semibold text-yellow-400">Student Enquiries</h2>
+    <h2 class="text-xl font-semibold text-yellow-400">
+      Student Enquiries
+    </h2>
     <a href="?download=enquiries"
-       class="bg-green-500 hover:bg-green-600 text-black font-semibold px-4 py-2 rounded-lg">
+       class="bg-green-500 hover:bg-green-600 text-black px-4 py-2 rounded-lg font-semibold">
       Download Excel
     </a>
   </div>
 
   <div class="overflow-x-auto">
-    <table class="min-w-full text-sm">
+    <table class="min-w-full text-sm border border-gray-700">
       <thead class="bg-gray-700">
         <tr>
           <th class="p-3 text-left">Name</th>
@@ -228,12 +233,9 @@ if (isset($_GET['delete'])) {
 
 <!-- JS -->
 <script>
-  const profileBtn = document.getElementById("profileBtn");
-  const profileMenu = document.getElementById("profileMenu");
-
-  profileBtn.addEventListener("click", () => {
-    profileMenu.classList.toggle("hidden");
-  });
+  document.getElementById("profileBtn").onclick = () => {
+    document.getElementById("profileMenu").classList.toggle("hidden");
+  };
 </script>
 
 </body>
