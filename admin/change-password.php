@@ -121,9 +121,15 @@ if (isset($_POST['change'])) {
                shadow-lg hover:scale-[1.02]">
         Update Password
       </button>
+    
 
     </form>
-
+   <!-- Back -->
+  <div class="text-center mt-6">
+    <a href="upload.php" class="text-sm text-gray-400 hover:text-yellow-400">
+      ← Back to Dashboard
+    </a>
+  </div>
     <!-- Footer -->
     <p class="text-center text-gray-500 text-xs mt-6">
       © <?= date('Y') ?> Shaheed RNS Education Academy
