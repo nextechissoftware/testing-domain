@@ -78,11 +78,12 @@ if (isset($_GET['delete'])) {
 <script src="https://cdn.tailwindcss.com"></script>
 </head>
 
-<body class="bg-gradient-to-br from-gray-900 via-gray-800 to-black text-white min-h-screen flex">
+<body class="bg-gray-900 text-white min-h-screen flex">
 
 <!-- ================= SIDEBAR ================= -->
-<aside class="w-64 fixed inset-y-0 left-0 bg-black border-r border-gray-700">
+<aside class="w-64 bg-black border-r border-gray-700 fixed inset-y-0 left-0">
 
+  <!-- Profile -->
   <div class="p-6 text-center border-b border-gray-700">
     <img src="../assets/logo.jpeg"
          id="profileBtn"
@@ -90,118 +91,110 @@ if (isset($_GET['delete'])) {
     <h2 class="text-yellow-400 text-sm font-semibold mt-3">
       Shaheed RNS Education Academy
     </h2>
-    <p class="text-xs text-gray-400">Admin Panel</p>
 
-    <!-- Profile Dropdown -->
-    <div id="profileMenu" class="hidden mt-4 bg-gray-800 rounded-lg border border-gray-700 text-sm">
-      <a href="change-password" class="block px-4 py-2 hover:bg-gray-700">
-        Change Password
-      </a>
-      <a href="logout" class="block px-4 py-2 text-red-400 hover:bg-gray-700">
-        Logout
-      </a>
+    <div id="profileMenu"
+         class="hidden mt-4 bg-gray-800 rounded-lg border border-gray-700 text-sm">
+      <a href="change-password" class="block px-4 py-2 hover:bg-gray-700">Change Password</a>
+      <a href="logout" class="block px-4 py-2 text-red-400 hover:bg-gray-700">Logout</a>
     </div>
   </div>
 
-  <!-- Sidebar Menu -->
+  <!-- Menu -->
   <nav class="p-4 space-y-2 text-sm">
-    <a href="#dashboard"
-       class="block px-4 py-3 rounded-lg bg-yellow-500 text-black font-semibold">
-       Dashboard
-    </a>
-    <a href="#gallery"
-       class="block px-4 py-3 rounded-lg hover:bg-gray-700">
-       Gallery Images
-    </a>
-    <a href="#enquiries"
-       class="block px-4 py-3 rounded-lg hover:bg-gray-700">
-       Student Enquiries
-    </a>
+    <button onclick="showSection('dashboard')"
+      class="w-full text-left px-4 py-3 rounded-lg bg-yellow-500 text-black font-semibold">
+      Dashboard
+    </button>
+    <button onclick="showSection('gallery')"
+      class="w-full text-left px-4 py-3 rounded-lg hover:bg-gray-700">
+      Gallery
+    </button>
+    <button onclick="showSection('enquiries')"
+      class="w-full text-left px-4 py-3 rounded-lg hover:bg-gray-700">
+      Enquiries
+    </button>
   </nav>
-
-  <p class="absolute bottom-4 w-full text-center text-xs text-gray-500">
-    © <?= date('Y') ?>
-  </p>
 </aside>
 
-<!-- ================= MAIN CONTENT ================= -->
-<main class="ml-64 flex-1 px-8 py-10 space-y-12">
+<!-- ================= MAIN ================= -->
+<main class="ml-64 flex-1 px-8 py-8 space-y-8">
 
-<!-- Dashboard -->
-<section id="dashboard">
-  <h1 class="text-2xl font-bold text-yellow-400 mb-6">
-    Admin Dashboard
-  </h1>
+<!-- ========== DASHBOARD OVERVIEW ========== -->
+<section id="dashboardSection">
 
-  <?php if (isset($error)) : ?>
-    <div class="bg-red-500/20 border border-red-500 text-red-400 px-5 py-3 rounded-xl mb-6">
-      <?= $error ?>
+  <h1 class="text-2xl font-bold text-yellow-400 mb-6">Dashboard Overview</h1>
+
+  <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+
+    <div class="bg-gray-800 p-6 rounded-xl border border-gray-700">
+      <h3 class="text-gray-400 text-sm">Total Gallery Images</h3>
+      <p class="text-3xl font-bold text-yellow-400">
+        <?= mysqli_num_rows(mysqli_query($conn,"SELECT id FROM gallery_images")) ?>
+      </p>
     </div>
-  <?php endif; ?>
 
-  <?php if (isset($success)) : ?>
-    <div class="bg-green-500/20 border border-green-500 text-green-400 px-5 py-3 rounded-xl mb-6">
-      <?= $success ?>
+    <div class="bg-gray-800 p-6 rounded-xl border border-gray-700">
+      <h3 class="text-gray-400 text-sm">Total Enquiries</h3>
+      <p class="text-3xl font-bold text-green-400">
+        <?= mysqli_num_rows(mysqli_query($conn,"SELECT id FROM enquiries")) ?>
+      </p>
     </div>
-  <?php endif; ?>
+
+    <div class="bg-gray-800 p-6 rounded-xl border border-gray-700">
+      <h3 class="text-gray-400 text-sm">Admin Status</h3>
+      <p class="text-xl font-semibold text-blue-400 mt-2">Active</p>
+    </div>
+
+  </div>
+
 </section>
 
-<!-- Upload Section -->
-<section class="bg-gray-800/80 backdrop-blur rounded-2xl p-6 border border-gray-700 shadow">
-  <h2 class="text-xl font-semibold text-yellow-400 mb-4">
-    Upload School Gallery Image
-  </h2>
+<!-- ========== GALLERY MANAGEMENT ========== -->
+<section id="gallerySection" class="hidden">
 
-  <form method="post" enctype="multipart/form-data" class="flex gap-4 flex-wrap">
-    <input type="file" name="image" required
-           class="flex-1 bg-gray-900 border border-gray-600 rounded-lg px-4 py-3">
-    <button type="submit" name="upload"
-            class="bg-yellow-500 hover:bg-yellow-600 text-black font-semibold px-8 py-3 rounded-lg">
-      Upload Image
-    </button>
-  </form>
-</section>
+  <h1 class="text-2xl font-bold text-yellow-400 mb-6">Gallery Management</h1>
 
-<!-- Gallery -->
-<section id="gallery">
-  <h2 class="text-xl font-semibold text-yellow-400 mb-5">
-    Gallery Images
-  </h2>
+  <div class="bg-gray-800 p-6 rounded-xl border border-gray-700 mb-6">
+    <form method="post" enctype="multipart/form-data" class="flex gap-4 flex-wrap">
+      <input type="file" name="image" required
+        class="flex-1 bg-gray-900 border border-gray-600 rounded-lg px-4 py-3">
+      <button name="upload"
+        class="bg-yellow-500 hover:bg-yellow-600 text-black px-8 py-3 rounded-lg font-semibold">
+        Upload Image
+      </button>
+    </form>
+  </div>
 
-  <div class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-6">
+  <div class="grid grid-cols-2 md:grid-cols-4 gap-6">
     <?php
     $res = mysqli_query($conn,"SELECT * FROM gallery_images ORDER BY id DESC");
     while($row = mysqli_fetch_assoc($res)){
     ?>
-      <div class="bg-gray-800 rounded-xl border border-gray-700 overflow-hidden">
-        <img src="../assets/gallery/<?= $row['image'] ?>"
-             class="w-full h-40 object-cover">
-        <div class="p-3 text-center bg-black/40">
-          <a href="?delete=<?= $row['id'] ?>"
-             onclick="return confirm('Are you sure?')"
-             class="text-red-400 hover:text-red-500 text-sm">
-             Delete
-          </a>
-        </div>
+    <div class="bg-gray-800 rounded-xl border border-gray-700 overflow-hidden">
+      <img src="../assets/gallery/<?= $row['image'] ?>" class="h-40 w-full object-cover">
+      <div class="p-3 text-center bg-black/40">
+        <a href="?delete=<?= $row['id'] ?>" class="text-red-400 text-sm"
+           onclick="return confirm('Delete image?')">Delete</a>
       </div>
+    </div>
     <?php } ?>
   </div>
+
 </section>
 
-<!-- Enquiries -->
-<section id="enquiries" class="bg-gray-800/80 backdrop-blur rounded-2xl p-6 border border-gray-700 shadow">
+<!-- ========== ENQUIRIES MANAGEMENT ========== -->
+<section id="enquiriesSection" class="hidden">
+
   <div class="flex justify-between items-center mb-4">
-    <h2 class="text-xl font-semibold text-yellow-400">
-      Student Enquiries
-    </h2>
+    <h1 class="text-2xl font-bold text-yellow-400">Student Enquiries</h1>
     <a href="?download=enquiries"
        class="bg-green-500 hover:bg-green-600 text-black px-4 py-2 rounded-lg font-semibold">
       Download Excel
     </a>
   </div>
 
-  <div class="overflow-x-auto">
-    <table class="min-w-full text-sm border border-gray-700">
+  <div class="overflow-x-auto bg-gray-800 rounded-xl border border-gray-700">
+    <table class="min-w-full text-sm">
       <thead class="bg-gray-700">
         <tr>
           <th class="p-3 text-left">Name</th>
@@ -212,10 +205,10 @@ if (isset($_GET['delete'])) {
         </tr>
       </thead>
       <tbody>
-        <?php
-        $enq = mysqli_query($conn, "SELECT * FROM enquiries ORDER BY id DESC");
-        while ($row = mysqli_fetch_assoc($enq)) {
-        ?>
+      <?php
+      $enq = mysqli_query($conn, "SELECT * FROM enquiries ORDER BY id DESC");
+      while ($row = mysqli_fetch_assoc($enq)) {
+      ?>
         <tr class="border-t border-gray-700 hover:bg-gray-700/40">
           <td class="p-3"><?= $row['name'] ?></td>
           <td class="p-3"><?= $row['email'] ?></td>
@@ -223,16 +216,25 @@ if (isset($_GET['delete'])) {
           <td class="p-3"><?= $row['message'] ?></td>
           <td class="p-3"><?= $row['created_at'] ?></td>
         </tr>
-        <?php } ?>
+      <?php } ?>
       </tbody>
     </table>
   </div>
+
 </section>
 
 </main>
 
 <!-- JS -->
 <script>
+  function showSection(section) {
+    document.getElementById('dashboardSection').classList.add('hidden');
+    document.getElementById('gallerySection').classList.add('hidden');
+    document.getElementById('enquiriesSection').classList.add('hidden');
+
+    document.getElementById(section + 'Section').classList.remove('hidden');
+  }
+
   document.getElementById("profileBtn").onclick = () => {
     document.getElementById("profileMenu").classList.toggle("hidden");
   };
