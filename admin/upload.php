@@ -74,7 +74,7 @@ if (isset($_GET['delete'])) {
 <html lang="en">
 <head>
 <meta charset="UTF-8">
-<title>Admin Dashboard | Shahee RNS Education Academy</title>
+<title>Admin Dashboard | Shaheed RNS Education Academy</title>
 <script src="https://cdn.tailwindcss.com"></script>
 </head>
 
@@ -88,7 +88,7 @@ if (isset($_GET['delete'])) {
          id="profileBtn"
          class="w-20 h-20 mx-auto rounded-full border-2 border-yellow-400 cursor-pointer">
     <h2 class="text-yellow-400 text-sm font-semibold mt-3">
-      Shaheed RNS Education Academy
+      Shaheed RNS Education 
     </h2>
     <p class="text-xs text-gray-400">Admin Panel</p>
 
