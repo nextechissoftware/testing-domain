@@ -4,7 +4,7 @@ include "../config/db.php";
 
 /* 🔐 Login protection */
 if (!isset($_SESSION['admin_id'])) {
-    header("Location: login.php");
+    header("Location: login");
     exit;
 }
 
