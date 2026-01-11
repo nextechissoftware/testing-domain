@@ -96,33 +96,63 @@ if (isset($_GET['delete'])) {
 <?php endif; ?>
 
 <!-- DASHBOARD -->
+<!-- DASHBOARD -->
 <section id="dashboard">
-  <h1 class="text-2xl font-bold text-yellow-400 mb-4">Dashboard</h1>
+  <h1 class="text-2xl font-bold text-yellow-400 mb-6">Dashboard</h1>
 
-  <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
-    <!-- Upload -->
-    <div class="bg-gray-800 p-6 rounded-lg border border-gray-700">
-      <h2 class="text-lg font-semibold mb-3">Quick Upload</h2>
-      <form method="post" enctype="multipart/form-data" class="flex gap-3">
-        <input type="file" name="image" required class="flex-1 bg-gray-900 p-2 rounded">
-        <button name="upload" class="bg-yellow-500 px-5 py-2 rounded text-black font-semibold">
-          Upload
-        </button>
-      </form>
+  <!-- Quick Upload -->
+  <div class="bg-gray-800 p-6 rounded-lg border border-gray-700 mb-8">
+    <h2 class="text-lg font-semibold mb-3">Quick Upload</h2>
+    <form method="post" enctype="multipart/form-data" class="flex gap-3">
+      <input type="file" name="image" required class="flex-1 bg-gray-900 p-2 rounded">
+      <button name="upload"
+        class="bg-yellow-500 hover:bg-yellow-600 px-6 py-2 rounded text-black font-semibold">
+        Upload
+      </button>
+    </form>
+  </div>
+
+  <!-- Enquiries Table -->
+  <div class="bg-gray-800 p-6 rounded-lg border border-gray-700">
+    <div class="flex justify-between items-center mb-4">
+      <h2 class="text-lg font-semibold text-green-400">Student Enquiries</h2>
+
+      <a href="?download=enquiries"
+         class="bg-blue-500 hover:bg-blue-600 px-4 py-2 rounded text-white font-semibold">
+        Download Excel
+      </a>
     </div>
 
-    <!-- Enquiry -->
-    <div class="bg-gray-800 p-6 rounded-lg border border-gray-700">
-      <h2 class="text-lg font-semibold mb-3">Recent Enquiries</h2>
-      <?php
-      $q = mysqli_query($conn,"SELECT COUNT(*) AS total FROM enquiries");
-      $r = mysqli_fetch_assoc($q);
-      ?>
-      <p class="text-4xl text-green-400 font-bold"><?= $r['total'] ?></p>
-      <p class="text-gray-400 text-sm">Total enquiries received</p>
+    <div class="overflow-x-auto">
+      <table class="w-full text-sm">
+        <thead class="bg-gray-700 text-gray-200">
+          <tr>
+            <th class="p-2 text-left">Name</th>
+            <th>Email</th>
+            <th>Phone</th>
+            <th>Message</th>
+            <th>Date</th>
+          </tr>
+        </thead>
+        <tbody>
+        <?php
+        $enq = mysqli_query($conn,"SELECT * FROM enquiries ORDER BY id DESC");
+        while($row=mysqli_fetch_assoc($enq)){
+        ?>
+          <tr class="border-t border-gray-700 hover:bg-gray-700/40">
+            <td class="p-2"><?= $row['name'] ?></td>
+            <td><?= $row['email'] ?></td>
+            <td><?= $row['phone'] ?></td>
+            <td><?= $row['message'] ?></td>
+            <td><?= $row['created_at'] ?></td>
+          </tr>
+        <?php } ?>
+        </tbody>
+      </table>
     </div>
   </div>
 </section>
+
 
 <!-- GALLERY -->
 <section id="gallery" class="hidden space-y-6">
