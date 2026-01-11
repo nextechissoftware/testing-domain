@@ -88,7 +88,7 @@ if (isset($_GET['delete'])) {
          id="profileBtn"
          class="w-20 h-20 mx-auto rounded-full border-2 border-yellow-400 cursor-pointer">
     <h2 class="text-yellow-400 text-sm font-semibold mt-3">
-      Shaheed RNS Education 
+      Shaheed RNS Education Academy
     </h2>
     <p class="text-xs text-gray-400">Admin Panel</p>
 
